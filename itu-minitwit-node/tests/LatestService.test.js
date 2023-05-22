@@ -8,13 +8,13 @@ describe('LatestService', () => {
     assert.strictEqual(latestService.getLatest(), 0);
   });
 
-  it('updatesStateWithValidValue', () => {
-    latestService.updateLatest(4);
+  it('updatesStateWithValidValue', async () => {
+    await latestService.updateLatest(4);
     assert.strictEqual(latestService.getLatest(), 4);
   });
 
-  it('updatesStateWithNoValue', () => {
-    latestService.updateLatest();
+  it('updatesStateWithNoValue', async () => {
+    await latestService.updateLatest();
     assert.strictEqual(latestService.getLatest(), undefined);
   });
 });

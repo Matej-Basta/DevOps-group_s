@@ -42,7 +42,7 @@ router.post("/register", async function (req, res, next) {
     //Updates Latest
     var latest = req.query.latest;
     if (latest !== undefined && isNaN(parseInt(latest))) {
-      latestService.updateLatest(parseInt(latest));
+      await latestService.updateLatest(parseInt(latest));
     }
 
     //Checks if username is taken
@@ -93,7 +93,7 @@ router.post("/register", async function (req, res, next) {
   }
 });
 
-router.get('/msgs', function (req, res, next) {
+router.get('/msgs', async function (req, res, next) {
   try {
     //Checks if header comes from simulator
     const header = req.headers.authorization;
@@ -108,7 +108,7 @@ router.get('/msgs', function (req, res, next) {
     //Updates Latest
     var latest = req.query.latest;
     if (latest !== undefined && isNaN(parseInt(latest))) {
-      latestService.updateLatest(parseInt(latest));
+      await latestService.updateLatest(parseInt(latest));
     }
 
     //Gets Limit
@@ -132,7 +132,7 @@ router.get('/msgs', function (req, res, next) {
       const filteredMsgs = [];
       for (const msg of rows) {
         const filteredMsg = {};
-        filteredMsg.content = msg.text; req.method
+        filteredMsg.content = msg.text;
         filteredMsg.pubDate = msg.pubDate;
         filteredMsg.user = msg.username;
         filteredMsgs.push(filteredMsg);
@@ -162,7 +162,7 @@ router.get('/msgs/:username', async function (req, res, next) {
     //Updates Latest
     var latest = req.query.latest;
     if (latest !== undefined && isNaN(parseInt(latest))) {
-      latestService.updateLatest(parseInt(latest));
+      await latestService.updateLatest(parseInt(latest));
     }
     //Gets Limit
     var no_msgs = parseInt(req.query.no);
@@ -232,7 +232,7 @@ router.post('/msgs/:username', async function (req, res, next) {
     //Updates Latest
     var latest = req.query.latest;
     if (latest !== undefined && isNaN(parseInt(latest))) {
-      latestService.updateLatest(parseInt(latest));
+      await latestService.updateLatest(parseInt(latest));
     }
 
     const users = await getAllUsers.getAllUsers()
@@ -287,7 +287,7 @@ router.get('/fllws/:username', async function (req, res, next) {
     //Updates Latest
     var latest = req.query.latest;
     if (latest !== undefined && isNaN(parseInt(latest))) {
-      latestService.updateLatest(parseInt(latest));
+      await latestService.updateLatest(parseInt(latest));
     }
 
     const users = await getAllUsers.getAllUsers();
@@ -346,7 +346,7 @@ router.post('/fllws/:username', async function (req, res, next) {
     // Updates Latest
     const latest = req.query.latest;
     if (latest !== undefined && isNaN(parseInt(latest))) {
-      latestService.updateLatest(parseInt(latest));
+      await latestService.updateLatest(parseInt(latest));
     }
 
     const users = await getAllUsers.getAllUsers();
